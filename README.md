@@ -19,5 +19,5 @@ Visual Localization
 - Histogram 시각화
     - visualize_histogram.py
 - Histogram DB 파일로 Image Query
-    - compare_histogram.py
+    - compare_db.py
       
