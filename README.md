@@ -21,6 +21,7 @@ Visual Localization
 - Histogram DB 파일로 Image Query
     - compare_db.py
 
+---  
 
 ![DB_이미지 삽입 가능한지](https://github.com/chaewonS/Image-Query/assets/81732426/c61112ca-746d-4d2f-819f-b4a59ee9370d)
 - DB 생성 (filename / Semantic class 픽셀 빈도 수)
