@@ -10,4 +10,14 @@ Visual Localization
     - 각 클래스에 해당하는 픽셀의 수를 히스토그램으로 표현 (only stuff class)
     - Semantic 영역에 대한 히스토그램 생성, 코사인 거리 계산
     - Query Image와 유사한 위치에서 찍힌 이미지를 찾아내는 것이 목표 (이미지 ID 출력)
+
+---  
+
+- DB 생성
+    - create_seg_db.py
+    - create_seg_query.py
+- Histogram 시각화
+    - visualize_histogram.py
+- Histogram DB 파일로 Image Query
+    - compare_histogram.py
       
