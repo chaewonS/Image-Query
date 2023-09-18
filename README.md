@@ -20,4 +20,11 @@ Visual Localization
     - visualize_histogram.py
 - Histogram DB 파일로 Image Query
     - compare_db.py
-      
+
+
+![DB_이미지 삽입 가능한지](https://github.com/chaewonS/Image-Query/assets/81732426/c61112ca-746d-4d2f-819f-b4a59ee9370d)
+- DB 생성 (filename / Semantic class 픽셀 빈도 수)
+
+
+![히스토그램 매칭 테스트 결과2](https://github.com/chaewonS/Image-Query/assets/81732426/40ebb5b2-b58a-40ce-8d0a-f40beb83103e)
+- Histogram 매칭 테스트 결과
