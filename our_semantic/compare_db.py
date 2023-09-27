@@ -1,71 +1,57 @@
-import numpy as np
 import sqlite3
-import cv2
-import os
-import torch
-from hloc.matchers.nearest_neighbor import NearestNeighbor
+import numpy as np
 
-# SQLite 데이터베이스 연결 만들기
-database_file = '/home/ubuntu/cw/Hierarchical-Localization/datasets/sacre_coeur/global_index/database_global_index.db'
-query_database_file = '/home/ubuntu/cw/Hierarchical-Localization/datasets/sacre_coeur/global_index/query_global_index.db'
+# 데이터베이스 파일 경로
+database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_origin.db"
+query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_query.db"  # 쿼리 이미지 DB 파일 경로
 
+# 데이터베이스 연결
 conn = sqlite3.connect(database_file)
 cursor = conn.cursor()
 
-# query 데이터베이스 연결 만들기
+# 쿼리 이미지 DB 연결
 query_conn = sqlite3.connect(query_database_file)
 query_cursor = query_conn.cursor()
 
-# SQLite 데이터베이스에서 이미지 파일 이름과 디스크립터 정보 가져오기
-cursor.execute('SELECT filename, descriptors FROM global_index')
-database_rows = cursor.fetchall()
+# 히스토그램 차이를 계산하는 함수
+def histogram_difference(hist1, hist2):
+    hist1 = np.array(hist1.split(), dtype=int)
+    hist2 = np.array(hist2.split(), dtype=int)
+    diff = np.abs(hist1 - hist2)
+    return np.sum(diff)
 
-# query SQLite 데이터베이스에서 query 이미지 파일 이름과 디스크립터 정보 가져오기
-query_cursor.execute('SELECT filename, descriptors FROM global_index')
-query_database_rows = query_cursor.fetchall()
+# 쿼리 이미지 DB에서 쿼리 이미지 정보 가져오기
+query_cursor.execute("SELECT filename, histogram FROM images")
+query_images = query_cursor.fetchall()
 
-# 디스크립터를 NumPy 배열로 변환
-database_descriptors = [np.frombuffer(row[1], dtype=np.uint8) for row in database_rows]
-query_descriptors = [np.frombuffer(row[1], dtype=np.uint8) for row in query_database_rows]
+# 쿼리 이미지들을 순회하며 각각의 가장 유사한 이미지 찾기
+for query_idx, (query_filename, query_histogram_str) in enumerate(query_images):
+    # 숫자 부분 추출
+    query_image_id = int(''.join(filter(str.isdigit, query_filename)))
 
-# 두 리스트의 길이를 맞추기 위해 짧은 리스트를 0으로 패딩
-max_length = max(len(database_descriptors), len(query_descriptors))
-database_descriptors_array = np.zeros((max_length, len(database_descriptors[0])), dtype=np.uint8)
-query_descriptors_array = np.zeros((max_length, len(query_descriptors[0])), dtype=np.uint8)
+    # 최소 히스토그램 차이를 추적하기 위한 변수 초기화
+    min_difference = float('inf')
+    most_similar_image_filename = ""
+    most_similar_image_id = ""
 
-database_descriptors_array[:len(database_descriptors)] = database_descriptors
-query_descriptors_array[:len(query_descriptors)] = query_descriptors
+    # 원본 이미지 테이블에서 모든 이미지를 가져와서 히스토그램 차이 계산
+    cursor.execute("SELECT filename, histogram FROM images")
+    images = cursor.fetchall()
 
-# NearestNeighbor 모델 초기화
-conf = {
-    'ratio_threshold': None,
-    'distance_threshold': None,
-    'do_mutual_check': True,
-}
-model = NearestNeighbor(conf=conf)
+    # 쿼리 이미지와 가장 유사한 이미지 찾기
+    for filename, histogram_str in images:
+        difference = histogram_difference(query_histogram_str, histogram_str)
+        image_id = int(''.join(filter(str.isdigit, filename)))
 
-# NumPy 배열을 텐서로 변환
-query_descriptors_tensor = torch.tensor(query_descriptors_array, dtype=torch.uint8)
-database_descriptors_tensor = torch.tensor(database_descriptors_array, dtype=torch.uint8)
+        if difference < min_difference:
+            min_difference = difference
+            most_similar_image_filename = filename
+            most_similar_image_id = image_id
 
-# 모델에 입력 데이터 설정
-input_data = {
-    'descriptors0': query_descriptors_tensor,
-    'descriptors1': database_descriptors_tensor,
-}
+    # 결과 출력
+    print(f"쿼리 이미지 {query_idx + 1} (ID {query_image_id}): DB에서 가장 유사한 이미지는 ID {most_similar_image_id}")
 
-# 이미지 검색 실행
-output = model(input_data)
 
-# 결과 처리
-for q_idx, matches in enumerate(output['matches0']):
-    best_match = matches.item()
-    if best_match >= 0:
-        best_filename = database_rows[best_match][0]
-        print(f"Query 이미지 {q_idx + 1}의 가장 유사한 이미지: {best_filename}")
-    else:
-        print(f"Query 이미지 {q_idx + 1}: 일치하는 이미지가 없습니다.")
-
-# 연결 종료
+# 데이터베이스 연결 종료
 conn.close()
 query_conn.close()
