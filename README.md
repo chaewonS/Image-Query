@@ -5,11 +5,17 @@ Visual Localization
     - feature points에 의존
 - Semantic Segmentation 정보 활용해 성능 향상
     - segmentation 정보 기반 term 추가
+- 기존 Hloc 알고리즘 성능 테스트
+    - 로컬 특징 추출 및 Query/Reference 이미지로 Global Descriptor 정보를 포함한 DB 생성, DB 파일로 이미지 검색 및 매칭 수행
+- Semantic Segmentation 성능 테스트
+    - weight, config 파일 활용, Query/Reference 이미지로 Semantic segmentation 정보를 포함한 DB 생성, DB 파일로 이미지 검색 및 매칭 수행
 - Histogram Matching 성능 평가 방식
     - https://docs.opencv.org/3.4/d8/dc8/tutorial_histogram_comparison.html
     - 각 클래스에 해당하는 픽셀의 수를 히스토그램으로 표현 (only stuff class)
     - Semantic 영역에 대한 히스토그램 생성, 코사인 거리 계산
     - Query Image와 유사한 위치에서 찍힌 이미지를 찾아내는 것이 목표 (이미지 ID 출력)
+- 정확도 코딩 (성능 평가 방법)
+- Query/Reference 이미지 Split 코딩
 
 ---  
 
