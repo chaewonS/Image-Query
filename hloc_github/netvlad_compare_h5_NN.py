@@ -32,10 +32,8 @@ def main():
     matcher_conf = match_features.confs['superglue']
 
     # Database 파일과 Query 파일을 생성하고 읽기
-    # database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/global-feats-netvlad.h5'
-    # query_database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/query-feats-netvlad.h5'
-    database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/global-feats-superpoint-n4096-r1024.h5'
-    query_database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/query-feats-superpoint-n4096-r1024.h5'
+    database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/global-feats-netvlad.h5'
+    query_database_file = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/query-feats-netvlad.h5'
 
     db_data = h5py.File(database_file, 'r')
     query_db_data = h5py.File(query_database_file, 'r')
