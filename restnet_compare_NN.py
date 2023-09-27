@@ -6,7 +6,7 @@ from torchvision.models import resnet18
 from PIL import Image
 from sklearn.neighbors import NearestNeighbors
 
-# 데이터 경로 설정
+# 데이터 경로 설정 
 database_images_path = '/home/ubuntu/cw/Hierarchical-Localization/datasets/sacre_coeur/mapping_origin'
 query_images_path = '/home/ubuntu/cw/Hierarchical-Localization/datasets/sacre_coeur/mapping_query'
 
