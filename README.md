@@ -13,14 +13,28 @@ Visual Localization
 
 ---  
 
-- DB 생성
-    - create_seg_db.py
-    - create_seg_query.py
-- Histogram 시각화
-    - visualize_histogram.py
-- Histogram DB 파일로 Image Query
-    - compare_db.py
+*Histogram 시각화
+- visualize_histogram.py
+  
+*H5 파일 읽기
+- read_h5.py
 
+1. Our Semantic Term
+    - pan_FCN 밑에서 실행 (pan_FCN 가상환경)
+    - Semantic Segmentation 정보 추가 및 DB 생성
+        - create_seg_db.py
+        - create_seg_query.py
+    - DB 파일로 이미지 검색 및 매칭
+        - compare_db.py
+
+3. Github Hloc Term
+    - Hierarchical-Localization 밑에서 실행 (Hloc 가상환경)
+    - 로컬 특징 추출 및 DB 생성
+        - extract_features_create_db.py
+    - DB 파일로 이미지 검색 및 매칭
+        - netvlad_compare_NN_h5.py
+        - netvlad_compare_NN_h5_id.py (ID 출력)
+          
 ---  
 
 ![DB_이미지 삽입 가능한지](https://github.com/chaewonS/Image-Query/assets/81732426/c61112ca-746d-4d2f-819f-b4a59ee9370d)
