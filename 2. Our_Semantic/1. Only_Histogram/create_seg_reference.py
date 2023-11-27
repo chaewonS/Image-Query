@@ -1,3 +1,4 @@
+# 히스토그램 정보만을 사용하여 (hist_str, area) 레퍼런스 데이터베이스 생성하는 코드
 import os
 import numpy as np
 from PIL import Image
@@ -65,7 +66,6 @@ predictor = DefaultPredictor(cfg)
 
 # 이미지 및 히스토그램 저장 디렉토리
 image_directory = "/home/ubuntu/cw/Hierarchical-Localization/datasets/sacre_coeur/mapping_origin"
-# histogram_directory = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/histogram_0915"
 database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_origin.db"
 
 # 이미지 파일 목록
@@ -74,11 +74,6 @@ image_files = os.listdir(image_directory)
 # 데이터베이스 연결
 conn = sqlite3.connect(database_file)
 cursor = conn.cursor()
-
-# 이미지 및 히스토그램 저장 디렉토리 초기화
-# if os.path.exists(histogram_directory):
-#     shutil.rmtree(histogram_directory)
-# os.makedirs(histogram_directory)
 
 # 데이터베이스 테이블 생성
 cursor.execute('''CREATE TABLE IF NOT EXISTS images
