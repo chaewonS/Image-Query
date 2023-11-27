@@ -1,8 +1,7 @@
+# rosbag 파일에서 image_topic을 읽어들이고, 이미지 파일로 변환하는 코드
 import os
 import argparse
-
 import cv2
-
 import rosbag
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
@@ -23,16 +22,13 @@ def main():
     bag = rosbag.Bag(args.bag_file, "r")
     bridge = CvBridge()
     count = 0
+    
     for topic, msg, t in bag.read_messages(topics=[args.image_topic]):
         cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough")
-
         cv2.imwrite(os.path.join(args.output_dir, "image_raw%i.jpg" % count), cv_img)
         print("Wrote image %i" % count)
-
         count += 1
-
     bag.close()
-
     return
 
 if __name__ == '__main__':
