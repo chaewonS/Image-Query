@@ -1,3 +1,4 @@
+# category_id, area, bbox, is_crowd, segmentation 정보를 포함한 쿼리 데이터베이스 생성
 import os
 import numpy as np
 from PIL import Image
