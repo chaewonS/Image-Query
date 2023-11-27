@@ -1,4 +1,4 @@
-# 레퍼런스/쿼리 DB 파일을 비교하여 threshold 기반으로 정확도 출력하는 코드
+# 레퍼런스/쿼리 DB 파일을 비교하여 distance 기반으로 정확도 출력하는 코드
 import sqlite3
 import numpy as np
 import matplotlib.pyplot as plt
