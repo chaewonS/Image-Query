@@ -1,3 +1,5 @@
+# 시맨틱 정보를 포함한 DB 파일을 비교하는데 시간이 오래 소요되므로,
+# 멀티프로세싱 방식을 사용하도록 수정한 코드드
 import sqlite3
 import numpy as np
 import json
