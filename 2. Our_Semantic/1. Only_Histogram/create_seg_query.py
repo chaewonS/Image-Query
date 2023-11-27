@@ -1,3 +1,4 @@
+# 히스토그램 정보만을 사용하여 (hist_str, area) 쿼리 데이터베이스 생성하는 코드
 import os
 import numpy as np
 from PIL import Image
@@ -74,11 +75,6 @@ image_files = os.listdir(image_directory)
 # 데이터베이스 연결
 conn = sqlite3.connect(database_file)
 cursor = conn.cursor()
-
-# 이미지 및 히스토그램 저장 디렉토리 초기화
-# if os.path.exists(histogram_directory):
-#     shutil.rmtree(histogram_directory)
-# os.makedirs(histogram_directory)
 
 # 데이터베이스 테이블 생성
 cursor.execute('''CREATE TABLE IF NOT EXISTS images
