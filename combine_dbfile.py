@@ -1,6 +1,6 @@
+# python integrate_h5_to_db.py 실행 후, 두 개의 db를 합치는 코드
 import sqlite3
 import h5py
-# python integrate_h5_to_db.py 실행 후, 두 개의 db를 합치는 코드
 
 # 기존 DB 파일 경로
 db_file_path = '/home/ubuntu/cw/Hierarchical-Localization/outputs/integrate/combined_refer.db'
