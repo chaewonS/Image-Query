@@ -1,3 +1,4 @@
+# counts 정보를 추가한 레퍼런스/쿼리 DB 파일을 비교하는 코드
 import sqlite3
 import numpy as np
 import json
