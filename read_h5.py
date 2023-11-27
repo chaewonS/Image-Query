@@ -1,3 +1,4 @@
+# h5 형식의 파일을 읽어들이는 코드
 import h5py
 
 def print_hdf5_contents(group, prefix=""):
