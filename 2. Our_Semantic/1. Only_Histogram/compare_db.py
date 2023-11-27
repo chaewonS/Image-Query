@@ -1,9 +1,8 @@
+# 레퍼런스/쿼리 DB 파일 비교해서 유사 이미지 ID 출력하는 코드
 import sqlite3
 import numpy as np
 
-# 데이터베이스 파일 경로
 database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_origin.db"
-# 쿼리 이미지 DB 파일 경로
 query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_query.db" 
 
 # 데이터베이스 연결
@@ -51,7 +50,6 @@ for query_idx, (query_filename, query_histogram_str) in enumerate(query_images):
 
     # 결과 출력
     print(f"쿼리 이미지 {query_idx + 1} (ID {query_image_id}): DB에서 가장 유사한 이미지는 ID {most_similar_image_id}")
-
 
 # 데이터베이스 연결 종료
 conn.close()
