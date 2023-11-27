@@ -1,3 +1,5 @@
+# compare_db_counts.py 시간이 오래 소요되므로,
+# threshold 기반으로 counts 정보를 포함한 레퍼런스/쿼리 DB 파일을 비교하도록 수정한 코드
 import sqlite3
 import numpy as np
 import json
