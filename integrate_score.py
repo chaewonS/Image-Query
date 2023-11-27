@@ -1,3 +1,4 @@
+# threshold 없이 hloc+histogram을 통합한 코드 (ver1)
 import h5py
 import numpy as np
 from pathlib import Path
