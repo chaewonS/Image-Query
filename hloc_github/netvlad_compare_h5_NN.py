@@ -3,17 +3,14 @@ import h5py
 import numpy as np
 from pathlib import Path
 from pprint import pformat
-
 from hloc import extract_features, match_features, pairs_from_covisibility, pairs_from_retrieval
 from hloc import colmap_from_nvm, triangulation, localize_sfm, visualization
 
 def nearest_neighbor_search(query_descriptor, db_global_descriptors, query_image_names, db_image_names):
     # 각 쿼리 이미지의 global descriptor와 DB의 global descriptor 간의 L2 거리 계산
     distances = np.linalg.norm(db_global_descriptors - query_descriptor, axis=1)
-    
     # L2 거리가 가장 작은 이미지의 인덱스 찾기
-    most_similar_image_idx = np.argmin(distances)
-    
+    most_similar_image_idx = np.argmin(distances) 
     # 가장 유사한 이미지와 거리 반환
     return most_similar_image_idx, distances[most_similar_image_idx]
 
@@ -45,7 +42,6 @@ def main():
 
     # Query 이미지 파일명 가져오기
     query_image_names = [group for group in query_db_data.keys() if 'global_descriptor' in query_db_data[group]]
-
     # DB 이미지 파일명 가져오기
     db_image_names = [group for group in db_data.keys() if 'global_descriptor' in db_data[group]]
 
@@ -53,7 +49,6 @@ def main():
     for query_index in range(len(query_global_descriptors)):
         query_descriptor = query_global_descriptors[query_index]
         most_similar_image_idx, similarity = nearest_neighbor_search(query_descriptor, db_global_descriptors, query_image_names, db_image_names)
-        
         # Query 이미지 파일명과 DB 이미지 파일명, 결과 출력
         query_image_name = query_image_names[query_index]
         db_image_name = db_image_names[most_similar_image_idx]
