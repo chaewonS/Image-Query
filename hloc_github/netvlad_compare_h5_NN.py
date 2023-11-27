@@ -1,3 +1,4 @@
+# NN Search로 레퍼런스/쿼리 DB 비교하는 코드 (Hloc 단독 정확도 출력)
 import h5py
 import numpy as np
 from pathlib import Path
