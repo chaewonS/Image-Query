@@ -1,3 +1,4 @@
+# 히스토그램 정보 추출 이후, 시각화한 이미지 저장하는 코드
 import os
 import numpy as np
 import matplotlib.pyplot as plt
