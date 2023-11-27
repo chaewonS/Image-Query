@@ -1,11 +1,9 @@
+# 레퍼런스/쿼리 DB 파일을 비교하여 threshold 기반으로 정확도 출력하는 코드
 import sqlite3
 import numpy as np
 import matplotlib.pyplot as plt
 
-# database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/kitti_image03_refer_3243.db"
 database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/bag_reference.db"
-
-# query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/kitti_image03_query_3243.db"
 query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/bag_query.db"
 
 conn = sqlite3.connect(database_file)
