@@ -1,6 +1,6 @@
+# Hloc에서 특성 추출기를 사용하여 로컬 특징 추출, h5 파일 생성하는 코드 (레퍼런스/쿼리 한 번씩 실행 필수)
 from pathlib import Path
 from pprint import pformat
-
 from hloc import extract_features, match_features, pairs_from_covisibility, pairs_from_retrieval
 from hloc import colmap_from_nvm, triangulation, localize_sfm, visualization
 
