@@ -1,3 +1,4 @@
+# Hloc에서 특성 추출기 변경한 (resnet) 코드
 import os
 import torch
 import numpy as np
