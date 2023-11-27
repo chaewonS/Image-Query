@@ -1,7 +1,7 @@
+# Hloc에서 h5 형식의 파일을 db 형식의 파일로 변환하는 코드
 import h5py
 import sqlite3
 import numpy as np
-# Hloc에서 h5 형식의 파일을 db 형식의 파일로 변환하는 코드
 
 # H5 파일 경로
 h5_file_path = '/home/ubuntu/cw/Hierarchical-Localization/outputs/sacre_coeur/NetVlad/bag-reference-feats-netvlad.h5'
@@ -25,8 +25,10 @@ cursor.execute('''
 with h5py.File(h5_file_path, 'r') as h5_file:
     for key in h5_file.keys():
         if key.startswith('image_raw'):
-            filename = key.split('/')[-1]  # 이미지 파일 이름
-            global_descriptor = h5_file[key]['global_descriptor'][...]  # global_descriptor 데이터
+            # 이미지 파일 이름
+            filename = key.split('/')[-1]
+            # global_descriptor 데이터
+            global_descriptor = h5_file[key]['global_descriptor'][...]  
             global_descriptor_str = ' '.join(map(str, global_descriptor))
             cursor.execute('INSERT INTO images (filename, global_descriptor) VALUES (?, ?)', (filename, global_descriptor_str))
 
