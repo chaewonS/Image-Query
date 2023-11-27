@@ -3,7 +3,8 @@ import numpy as np
 
 # 데이터베이스 파일 경로
 database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_origin.db"
-query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_query.db"  # 쿼리 이미지 DB 파일 경로
+# 쿼리 이미지 DB 파일 경로
+query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/outputs/DB/database_query.db" 
 
 # 데이터베이스 연결
 conn = sqlite3.connect(database_file)
