@@ -8,7 +8,7 @@ query_database_file = "/home/ubuntu/cw/Hierarchical-Localization/datasets/output
 
 # 데이터베이스 연결
 conn = sqlite3.connect(database_file)
-cursor = conn.cursor()
+cursor = conn.cursor() 
 
 # 쿼리 이미지 DB 연결
 query_conn = sqlite3.connect(query_database_file)
