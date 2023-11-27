@@ -1,3 +1,6 @@
+# NN Search로 레퍼런스/쿼리 DB 비교하는 코드 (Hloc 단독 정확도 출력)
+# DB에 있는 연속된 ID 기준
+# True/False로 strict 검증 추가
 import h5py
 import numpy as np
 from pathlib import Path
@@ -9,10 +12,8 @@ from hloc import colmap_from_nvm, triangulation, localize_sfm, visualization
 def nearest_neighbor_search(query_descriptor, db_global_descriptors, query_image_names, db_image_names):
     # 각 쿼리 이미지의 global descriptor와 DB의 global descriptor 간의 L2 거리 계산
     distances = np.linalg.norm(db_global_descriptors - query_descriptor, axis=1)
-    
     # L2 거리가 가장 작은 이미지의 인덱스 찾기
     most_similar_image_idx = np.argmin(distances)
-    
     # 가장 유사한 이미지와 거리 반환
     return most_similar_image_idx, distances[most_similar_image_idx]
 
